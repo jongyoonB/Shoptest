@@ -1,0 +1,12 @@
+table, tr, td, th {
+    margin:0;
+    padding:0;
+}
+
+td.main_menu {
+    background-color: burlywood;
+}
+
+td.left_menu {
+    background-color: darkgray;
+}

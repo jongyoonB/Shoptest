@@ -1,0 +1,1 @@
+<h2>All rights reserved by BJY</h2>
