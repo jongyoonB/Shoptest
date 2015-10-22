@@ -6,6 +6,8 @@
  * Time: 오후 2:40
  */
 
+
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
+$page=isset($_REQUEST['page']) ? $_REQUEST['page'] : null;
 
 ?>

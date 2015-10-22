@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - board@localhost" uuid="94588a75-88db-425b-9c9e-816a39244160">
+    <data-source name="MySQL - board@http://jycom.asuscomm.com" uuid="be848463-96ea-47cc-930c-f7d6a471ab5d">
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>DB_user</user-name>
+    </data-source>
+    <data-source name="MySQL - board@localhost" uuid="24b31c55-5b0d-4ec3-91e7-7e9494894e35">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
       <schema-pattern>board.*</schema-pattern>

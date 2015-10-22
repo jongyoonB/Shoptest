@@ -6,10 +6,8 @@
  * Time: 오후 9:23
  */
 
-include "DB_Function.php";
-
-
-class FreeBoard{
+//use class not yet...
+/*class FreeBoard{
     private $contents_id;
     private $board_id;
     private $user_id;
@@ -62,6 +60,40 @@ class FreeBoard{
             default:
         }
     }
+}*/
+
+
+
+function getBoardValue($argTableName, $argPage, $argPid){
+    $result = select_Query($argTableName, $argPage, $argPid);
+
+    //echo $_SESSION['numbOfPage']."<br>";
+
+    for($index_i = 0 ; $index_i < 5 ; $index_i++){
+        $arrTemp[$index_i] = getDB_Value($result);
+        //var_dump($arrTemp[$index_i]);
+
+        //echo "<br><br><br>";
+    }
+    /*if($argPid) {
+        echo $arrTemp[0]['subject']."<br>".$arrTemp[0]['hits'];
+        $query = "update ".$argTableName." set hits = ".($arrTemp[0]['hits'] + 1)." where contents_id = $argPid";
+        transmit_Query($query);
+        getBoardValue($argTableName, $argPage, null);
+        $arrTemp[0]['hits'] += 1;
+    }*/
+
+    //var_dump($arrTemp);
+    $_SESSION['board_value'] = $arrTemp;
+    //var_dump($_SESSION['board_value']);
+}
+
+function delete_contents($argTableName, $argPage, $argPid){
+    $query = "delete from ".$argTableName." where contents_id = ".$argPid;
+    transmit_Query($query);
+    getBoardValue($argTableName, $argPage, null);
+
+
 }
 
 ?>

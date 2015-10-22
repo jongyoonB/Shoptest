@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - board@localhost" uuid="94588a75-88db-425b-9c9e-816a39244160">
-    <database-info product="MySQL" version="5.6.26" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+  <data-source name="MySQL - board@http://jycom.asuscomm.com" uuid="be848463-96ea-47cc-930c-f7d6a471ab5d">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="MySQL - board@localhost" uuid="24b31c55-5b0d-4ec3-91e7-7e9494894e35">
+    <database-info product="MySQL" version="5.5.5-10.0.17-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="board"/>
-    <table name="board" schema="" catalog="board" type="TABLE">
+    <table name="Freeboard" schema="" catalog="board" type="TABLE">
       <column name="contents_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
       <column name="board_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="user_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
@@ -20,10 +23,12 @@
       <index name="board_pid" unique="false" columns="board_id"/>
     </table>
     <table name="user_info" schema="" catalog="board" type="TABLE">
-      <column name="name" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="nick_name" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <column name="id" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
-      <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="passwd" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <index name="unique_id" unique="true" columns="id"/>
+      <index name="unique_nick_name" unique="true" columns="nick_name"/>
     </table>
   </data-source>
 </component>

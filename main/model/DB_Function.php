@@ -6,21 +6,11 @@
  * Time: 오후 7:38
  */
 
-define("ADD", "127.0.0.1");
+define("ADD", "localhost");
 define("USER", "root");
-define("PASSWD", "tpdltja1!");
-switch ($_SESSION['board_num']){
-    case 1:{
-        define("DB_NAME", "board");
-        break;
-    }
-
-    case 2:{
-        //define("DB_NAME", "Secondboard");
-        //break;
-    }
-}
-
+define("PASSWD", "DB!");
+define("DB_NAME", "board");
+define("per_page", 5);
 
 function DB_CONN(){
     return mysqli_connect(ADD, USER, PASSWD, DB_NAME);
@@ -39,16 +29,27 @@ function getDB_rows($argResult){
 }
 
 
-function select_all ($argTable_Num){
-    switch($argTable_Num){
-        case 1:{
+function select_Query ($argTableName, $argPage, $argPid){
+    session_start();
+    //echo "<script>alert('$argPage')</script>";
+    $query = "select * from $argTableName";
+    $numOfRows = getDB_rows(transmit_Query($query));
 
-        }
+    $_SESSION['numbOfPage'] = ($numOfRows % per_page ==0) ? floor($numOfRows / per_page) : floor($numOfRows / per_page) +1;
 
-        case 2:{
-
-        }
+    if($argPid){
+        $query.=" where contents_id = "."$argPid";
     }
-    $query = "select * from "
+
+    else{
+        $query .= " limit " . (($argPage - 1) * per_page) . "," . per_page;
+    }
+    //echo $query;
+
+    return transmit_Query($query);
 }
+
+
+
+
 ?>

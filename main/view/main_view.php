@@ -14,6 +14,7 @@ include "commonDataMainView.php";
         <link rel = "stylesheet" href="../../css/aLinkNoUnderLine.css">
         <link rel = "stylesheet" href="../../css/img_Size_Menu.css">
         <link rel = "stylesheet" href="../../css/table_bgColor.css">
+        <link rel = "stylesheet" href="../../css/table_align.css">
     </head>
 
     <body>

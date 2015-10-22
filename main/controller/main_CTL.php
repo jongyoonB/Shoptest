@@ -9,6 +9,8 @@
 include "../view/commonDataMainView.php";
 include "../model/DB_Function.php";
 include "../model/login.php";
+include "../model/board.php";
+
 //echo "<script>alert('current value of action : ".$action."')</script>";
 
 if(!$action){
@@ -36,13 +38,15 @@ else {
      * fuc  : 00x
      */
     $main = intval($action / 100);
-    echo "main = " . $main . "<br>";
-
     $sub = intval(($action - $main * 100) / 10);
-    echo "sub = " . $sub . "<br>";
-
     $fuc = $action - $main * 100 - $sub * 10;
-    echo "fuc = " . $fuc . "<br>";
+    $page = isset($_GET['page']) ? $_GET['page'] : null;
+    $pid = isset($_GET['pid']) ? $_GET['pid'] : null;
+
+    //echo "<script>alert('$page')</script>";
+    /*echo "main = " . $main . "<br>";
+    echo "sub = " . $sub . "<br>";
+    echo "fuc = " . $fuc . "<br>";*/
 
     switch ($main) {
         case 1:{
@@ -51,52 +55,64 @@ else {
              *              110 - Free
              *              120 - Picture
              */
+
             switch ($sub) {
 
                 // Free talk
-                case 1:{
-                    $_SESSION['board_num'] = 1;
+                case 1: {
+                    $tableName = "FreeBoard";
                     break;
                 }
 
                 //Picture
-                case 2:{
-                    $_SESSION['board_num'] = 2;
+                case 2: {
+                    $board_num = "Picture";
                     break;
                 }
 
                 default:
             }
+            getBoardValue($tableName, $page, null);
+
+
 
 
             /* Board's Function
-            *              xx1 - Write
-            *              xx2 - Modify
-            *              xx3 - Delete
-            *              xx4 - Search
+            *              xx1 - view
+            *              xx2 - Write
+            *              xx3 - Modify
+            *              xx4 - Delete
+            *              xx5 - Search
             */
             switch ($fuc) {
 
-                //Write
+                //view
                 case 1:{
-
+                    getBoardValue($tableName, $page, $pid);
                     break;
                 }
 
-                //Modify
+                //Write
                 case 2:{
 
                     break;
                 }
 
-                //Delete
+                //Modify
                 case 3:{
 
                     break;
                 }
 
-                //Search
+                //Delete
                 case 4:{
+                    delete_contents($tableName, $page, $pid);
+                    $action=110;
+                    break;
+                }
+
+                //Search
+                case 5:{
 
                     break;
                 }
@@ -130,5 +146,6 @@ else {
         default:
     }
 
-    //header("location:../view/main_view.php?action=$action");
+    header("location:../view/main_view.php?action=$action&page=$page");
+
 }
