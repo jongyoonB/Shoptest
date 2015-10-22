@@ -9,7 +9,7 @@
 define("ADD", "127.0.0.1");
 define("USER", "root");
 define("PASSWD", "tpdltja1!");
-switch ($_SESSION['board_num']){
+/*switch ($_SESSION['board_num']){
     case 1:{
         define("DB_NAME", "board");
         break;
@@ -19,7 +19,8 @@ switch ($_SESSION['board_num']){
         //define("DB_NAME", "Secondboard");
         //break;
     }
-}
+}*/
+define("DB_NAME", "board");
 
 
 function DB_CONN(){
@@ -39,16 +40,13 @@ function getDB_rows($argResult){
 }
 
 
-function select_all ($argTable_Num){
-    switch($argTable_Num){
-        case 1:{
-
-        }
-
-        case 2:{
-
-        }
+function select_Query ($argTable_Name, $argPid){
+    $query = "select * from " . $argTable_Name;
+    if($argPid) {
+        $query.=" where contents_id = ".$argPid;
     }
-    $query = "select * from "
+    return transmit_Query($query);
 }
+
+
 ?>

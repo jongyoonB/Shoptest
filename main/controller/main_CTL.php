@@ -9,6 +9,7 @@
 include "../view/commonDataMainView.php";
 include "../model/DB_Function.php";
 include "../model/login.php";
+include "../model/Board.php";
 //echo "<script>alert('current value of action : ".$action."')</script>";
 
 if(!$action){
@@ -35,77 +36,98 @@ else {
      * sub  : 0x0
      * fuc  : 00x
      */
+    $pid = isset($_GET['pid']) ? $_GET['pid'] : null;
     $main = intval($action / 100);
-    echo "main = " . $main . "<br>";
-
     $sub = intval(($action - $main * 100) / 10);
-    echo "sub = " . $sub . "<br>";
-
     $fuc = $action - $main * 100 - $sub * 10;
-    echo "fuc = " . $fuc . "<br>";
+    /*echo "main = " . $main . "<br>";
+    echo "sub = " . $sub . "<br>";
+    echo "fuc = " . $fuc . "<br>";*/
 
     switch ($main) {
+
         case 1:{
+            $_SESSION['board_num'] = 1;
+            $_SESSION['board_num'] = 2;
 
-            /* Boards
-             *              110 - Free
-             *              120 - Picture
-             */
-            switch ($sub) {
 
-                // Free talk
-                case 1:{
-                    $_SESSION['board_num'] = 1;
-                    break;
+
+            if(!$fuc){
+                /* Boards
+                 *              110 - Free
+                 *              120 - Picture
+                 */
+                switch ($sub) {
+
+                    // Free talk
+                    case 0:
+                    case 1:{
+                        getValueBoard($_SESSION['board_num'], null);
+                        break;
+                    }
+
+                    //Picture
+                    case 2:{
+
+                        break;
+                    }
+
+                    default:
                 }
-
-                //Picture
-                case 2:{
-                    $_SESSION['board_num'] = 2;
-                    break;
-                }
-
-                default:
             }
 
-
             /* Board's Function
-            *              xx1 - Write
-            *              xx2 - Modify
-            *              xx3 - Delete
-            *              xx4 - Search
+            *              xx1 - view
+            *              xx2 - Write
+            *              xx3 - Modify
+            *              xx4 - Delete
+            *              xx5 - Search
             */
             switch ($fuc) {
 
-                //Write
+                //view
                 case 1:{
+                    echo "!!!<br>";
+                    getValueBoard($_SESSION['board_num'], $pid);
+                    break;
+                }
+
+                //Write
+                case 2:{
 
                     break;
                 }
 
                 //Modify
-                case 2:{
-
-                    break;
-                }
-
-                //Delete
                 case 3:{
 
                     break;
                 }
 
-                //Search
+                //Delete
                 case 4:{
+
+                    break;
+                }
+
+                //Search
+                case 5:{
 
                     break;
                 }
 
                 default :
             }
+
+
             break;
         }
 
+
+
+
+
+        //소설
         case 2:{
 
             break;
@@ -130,5 +152,5 @@ else {
         default:
     }
 
-    //header("location:../view/main_view.php?action=$action");
+    header("location:../view/main_view.php?action=$action");
 }

@@ -6,7 +6,6 @@
  * Time: 오후 7:42
  */
 
-include 'DB.php';
 $id = isset($_POST['id']) ? $_POST['id'] : null;
 $passwd = isset($_POST['passwd']) ? $_POST['passwd'] : null;
 

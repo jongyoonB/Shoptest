@@ -6,10 +6,8 @@
  * Time: 오후 9:23
  */
 
-include "DB_Function.php";
-
-
-class FreeBoard{
+//use class not complete ye
+/*class FreeBoard{
     private $contents_id;
     private $board_id;
     private $user_id;
@@ -62,6 +60,35 @@ class FreeBoard{
             default:
         }
     }
+}*/
+session_start();
+function getValueBoard($argTable_Num)
+{
+
+    switch($argTable_Num){
+        case 1:{
+            $tableName = "board";
+            break;
+        }
+
+        case 2:{
+            $tableName = "picture";
+            break;
+        }
+
+        default:
+    }
+
+    $result = select_Query($tableName);
+    $numRows = getDB_rows($result);
+
+    for ($index_i = 0; $index_i < $numRows; $index_i++) {
+        $arrTemp[$index_i] = getDB_Value($result);
+
+    }
+
+    $_SESSION['board_value'];
 }
+
 
 ?>
